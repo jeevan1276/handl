@@ -8,6 +8,7 @@ import { RatingStars } from '@/components/shared/rating-stars'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BookingButton } from './booking-button'
 
 export default async function ListingPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params
@@ -79,9 +80,7 @@ export default async function ListingPage(props: { params: Promise<{ id: string 
               <TrustBadge tier={listing.provider.verification_tier} className="w-full justify-center py-1.5" />
             </div>
 
-            <Button size="lg" className="w-full font-semibold text-base h-12">
-              Book Now
-            </Button>
+            <BookingButton listingId={listing.id} />
             <p className="text-xs text-center text-muted-foreground">You won&apos;t be charged yet</p>
           </GlassCard>
         </div>

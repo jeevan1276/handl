@@ -102,7 +102,7 @@ export default async function BrowsePage(props: { searchParams: Promise<{ q?: st
                       <div className="flex items-center gap-2">
                         <UserAvatar url={listing.provider.avatar_url} name={listing.provider.name} className="h-6 w-6" />
                         <span className="text-sm font-medium text-muted-foreground truncate max-w-[100px]">{listing.provider.name}</span>
-                        {listing.provider.verification_tier > 0 && <TrustBadge tier={listing.provider.verification_tier} className="px-1 py-0 h-4 border-none bg-transparent [&>svg]:w-3 [&>svg]:h-3" />}
+                        {listing.provider.verification_tier != null && listing.provider.verification_tier > 0 && <TrustBadge tier={listing.provider.verification_tier} className="px-1 py-0 h-4 border-none bg-transparent [&>svg]:w-3 [&>svg]:h-3" />}
                       </div>
                       <div className="text-right">
                         <div className="font-semibold">${listing.price}</div>

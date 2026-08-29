@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { GlassCard } from '@/components/ui/glass-card'
-import { UserAvatar } from '@/components/ui/user-avatar'
+import { GlassCard } from '@/components/shared/glass-card'
+import { UserAvatar } from '@/components/shared/user-avatar'
 
 export default async function MessagesPage() {
   const supabase = await createClient()

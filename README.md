@@ -4,7 +4,7 @@ A campus-only services marketplace where students turn skills into income and ge
 
 ## Overview
 
-**handl** (working name: "Quad") replaces the chaotic campus economy of GroupMe, Discord, Facebook groups, and paper flyers with a structured marketplace featuring:
+**handl** replaces the chaotic campus economy of GroupMe, Discord, Facebook groups, and paper flyers with a structured marketplace featuring:
 
 - **Verified identities** — `.edu` email gatekeeping with trust badges
 - **Two-way discovery** — Browse service listings OR post task requests

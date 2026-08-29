@@ -28,6 +28,14 @@ const CATEGORIES = [
 async function seed() {
   console.log('🌱 Starting database seed...')
 
+  console.log('🧹 Cleaning existing database (deleting old users and cascading)...')
+  const { data: { users: existingUsers }, error: listError } = await supabase.auth.admin.listUsers()
+  if (!listError && existingUsers) {
+    for (const u of existingUsers) {
+      await supabase.auth.admin.deleteUser(u.id)
+    }
+  }
+
   // 1. Create Users (15 users)
   console.log('👤 Creating 15 users...')
   const users = []

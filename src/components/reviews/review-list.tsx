@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
-import { GlassCard } from '@/components/ui/glass-card'
-import { UserAvatar } from '@/components/ui/user-avatar'
+import { GlassCard } from '@/components/shared/glass-card'
+import { UserAvatar } from '@/components/shared/user-avatar'
 import { Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 

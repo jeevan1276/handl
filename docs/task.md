@@ -18,17 +18,17 @@
 - `[x]` **Auth pages**: `/login` and `/register` with Supabase email/password auth
 - `[x]` **`.edu` gate**: Validate email ends in `.edu` on the register Server Action (reject others)
 - `[x]` **Auth middleware**: Protect `/dashboard/*` routes, redirect unauthenticated users
-- `[ ]` **Profile setup**: On first login, redirect to `/onboarding` → collect name, major, class year, avatar (Supabase Storage upload), bio, skills
-- `[ ]` **Profile page**: `/profile/[id]` — public view with avatar, bio, skills, stats, reviews, portfolio
-- `[ ]` **Shared components**: `<GlassCard>`, `<TrustBadge>`, `<RatingStars>`, `<UserAvatar>`, `<CategoryBadge>`
+- `[x]` **Profile setup**: On first login, redirect to `/onboarding` → collect name, major, class year, avatar (Supabase Storage upload), bio, skills
+- `[x]` **Profile page**: `/profile/[id]` — public view with avatar, bio, skills, stats, reviews, portfolio
+- `[x]` **Shared components**: `<GlassCard>`, `<TrustBadge>`, `<RatingStars>`, `<UserAvatar>`, `<CategoryBadge>`
 
-## Sprint 2: Marketplace & Browse (~3 hrs)
-- `[ ]` **Landing page** (`/`): Hero section with gradient text + CTA, animated category grid (staggered load), trust stats counter, "How it Works" section
-- `[ ]` **Create listing**: `/dashboard/listings/new` — form with title, description, category, price, pricing type, image upload
-- `[ ]` **Browse page**: `/browse` — grid of active listings with `<GlassCard>`, category filter, search bar (Supabase `tsvector`), sort by rating/price/newest
-- `[ ]` **Listing detail**: `/listing/[id]` — full description, provider mini-profile, "Book Now" button, reviews section
-- `[ ]` **Task board**: `/tasks` — list of open task requests, post new task form at `/dashboard/tasks/new`
-- `[ ]` **Card hover animation**: Apply `translateY(-4px)` lift + accent border glow on all listing cards
+## Sprint 2: Marketplace & Browse (~3 hrs) — ✅ COMPLETE
+- `[x]` **Landing page** (`/`): Hero section with gradient text + CTA, animated category grid (staggered load), trust stats counter, "How it Works" section
+- `[x]` **Create listing**: `/dashboard/listings/new` — form with title, description, category, price, pricing type, image upload
+- `[x]` **Browse page**: `/browse` — grid of active listings with `<GlassCard>`, category filter, search bar (Supabase `tsvector`), sort by rating/price/newest
+- `[x]` **Listing detail**: `/listing/[id]` — full description, provider mini-profile, "Book Now" button, reviews section
+- `[x]` **Task board**: `/tasks` — list of open task requests, post new task form at `/dashboard/tasks/new`
+- `[x]` **Card hover animation**: Apply `translateY(-4px)` lift + accent border glow on all listing cards
 
 ## Sprint 3: Booking + Payments (~2.5 hrs)
 - `[ ]` **Stripe setup**: Create Stripe account, get test keys → `.env.local`

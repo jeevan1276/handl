@@ -1,0 +1,86 @@
+# Quad — Hackathon Task Tracker
+
+> Sequential critical path. No parallel phases — one person or a small team works through this top-to-bottom. Each phase has an hour estimate. If you're behind, cut from the bottom, never from the top.
+
+---
+
+## Sprint 0: Scaffold & Schema (~2 hrs) — ✅ COMPLETE
+- `[x]` `npx create-next-app@latest ./ --ts --app --tailwind --eslint --src-dir`
+- `[x]` Install deps: `@supabase/supabase-js`, `@supabase/ssr`, `framer-motion`, `shadcn/ui` (init + add button, card, input, dialog, badge, avatar, select, tabs, textarea, dropdown-menu, separator)
+- `[x]` Create Supabase project → grab `SUPABASE_URL` + `SUPABASE_ANON_KEY` → `.env.local`
+- `[x]` Run full SQL schema in Supabase SQL Editor (copy from scripts/schema.sql)
+- `[x]` Generate TypeScript types: `supabase gen types typescript --project-id <id> > src/lib/database.types.ts`
+- `[x]` Create Supabase client helpers (`src/lib/supabase/client.ts`, `server.ts`, `middleware.ts`)
+- `[x]` Setup `src/app/globals.css` with Dark Glass design tokens
+- `[ ]` Deploy to Vercel with env vars → confirm blank site loads at production URL
+
+## Sprint 1: Auth + Profile (~2.5 hrs) — 🚀 IN PROGRESS
+- `[x]` **Auth pages**: `/login` and `/register` with Supabase email/password auth
+- `[x]` **`.edu` gate**: Validate email ends in `.edu` on the register Server Action (reject others)
+- `[x]` **Auth middleware**: Protect `/dashboard/*` routes, redirect unauthenticated users
+- `[ ]` **Profile setup**: On first login, redirect to `/onboarding` → collect name, major, class year, avatar (Supabase Storage upload), bio, skills
+- `[ ]` **Profile page**: `/profile/[id]` — public view with avatar, bio, skills, stats, reviews, portfolio
+- `[ ]` **Shared components**: `<GlassCard>`, `<TrustBadge>`, `<RatingStars>`, `<UserAvatar>`, `<CategoryBadge>`
+
+## Sprint 2: Marketplace & Browse (~3 hrs)
+- `[ ]` **Landing page** (`/`): Hero section with gradient text + CTA, animated category grid (staggered load), trust stats counter, "How it Works" section
+- `[ ]` **Create listing**: `/dashboard/listings/new` — form with title, description, category, price, pricing type, image upload
+- `[ ]` **Browse page**: `/browse` — grid of active listings with `<GlassCard>`, category filter, search bar (Supabase `tsvector`), sort by rating/price/newest
+- `[ ]` **Listing detail**: `/listing/[id]` — full description, provider mini-profile, "Book Now" button, reviews section
+- `[ ]` **Task board**: `/tasks` — list of open task requests, post new task form at `/dashboard/tasks/new`
+- `[ ]` **Card hover animation**: Apply `translateY(-4px)` lift + accent border glow on all listing cards
+
+## Sprint 3: Booking + Payments (~2.5 hrs)
+- `[ ]` **Stripe setup**: Create Stripe account, get test keys → `.env.local`
+- `[ ]` **Booking Server Action**: Create booking record (status: `pending`) → create Stripe Checkout Session → redirect requester to Stripe
+- `[ ]` **Success page**: `/booking/success?session_id=...` — confirm payment, update booking status to `confirmed`
+- `[ ]` **Webhook handler**: `/api/webhooks/stripe` — listen for `checkout.session.completed`, update `payments` table
+- `[ ]` **Provider view**: `/dashboard/bookings` — see incoming bookings, "Mark Complete" button
+- `[ ]` **Requester confirm**: Once provider marks complete → requester gets "Confirm & Release Payment" button → updates `wallet_balance` on provider's profile
+- `[ ]` **Booking status flow**: `pending → confirmed → in_progress → completed`
+
+## Sprint 4: Real-Time Chat (~2 hrs)
+- `[ ]` **Conversation creation**: Auto-create conversation when booking is confirmed
+- `[ ]` **Chat UI**: `/dashboard/messages/[conversationId]` — message list + input, scrolls to bottom
+- `[ ]` **Supabase Realtime**: Subscribe to `INSERT` on `messages` table filtered by `conversation_id`
+- `[ ]` **Send message**: Server Action inserts into `messages` → Realtime pushes to other participant
+- `[ ]` **Chat list**: `/dashboard/messages` — list of all conversations with last message preview
+- `[ ]` **Two-tab test**: Open two browser windows, send messages, confirm instant delivery
+
+## Sprint 5: Reviews + Trust + Dashboard (~2 hrs)
+- `[ ]` **Review form**: After booking is `completed`, show review form (1-5 stars, comment, structured tags)
+- `[ ]` **Review display**: Show reviews on provider's profile page and listing detail page
+- `[ ]` **Trust score recalc**: After review submission, update `avg_rating` and `completed_gigs` on `profiles`
+- `[ ]` **Dashboard**: `/dashboard` — earnings summary (total, this month), active bookings list, recent reviews, wallet balance
+- `[ ]` **Trust badges**: Display tier badge (New / Rising / Trusted / Top Rated) based on `completed_gigs` + `avg_rating` thresholds
+
+## Sprint 6: Seed Data + Demo Polish (~2 hrs)
+- `[ ]` **Write seed script** (`scripts/seed.ts`): 15 users, 25 listings across all categories, 10 task requests, 20 bookings, 30 reviews, 5 conversations with messages
+- `[ ]` **Hero demo accounts**: Pre-configure "Maya Chen" (provider, 4.8★, 12 gigs) and "Jordan Rivera" (requester, freshman)
+- `[ ]` **Page transitions**: Add Framer Motion `AnimatePresence` with fade + slide on route changes
+- `[ ]` **Mobile responsive**: Test and fix all pages at 375px viewport width
+- `[ ]` **Loading states**: Add skeleton loaders on browse page and profile page
+- `[ ]` **Final deploy**: Push to Vercel, run seed against production Supabase, test full demo flow end-to-end
+
+---
+
+## Total Estimated: ~16 hours
+
+---
+
+## Post-Hackathon: Hardening (Week 1)
+- `[ ]` Add Row Level Security (RLS) policies to all Supabase tables
+- `[ ]` Replace simulated wallet with real Stripe Connect Express
+- `[ ]` Implement double-blind review logic (reveal only when both submitted or after 14 days)
+- `[ ]` Add OpenAI moderation on listing/profile text
+- `[ ]` Error boundaries, proper 404/500 pages, Sentry integration
+- `[ ]` Implement `.edu` email verification link (not just domain check)
+
+## Post-Hackathon: Growth (Weeks 2-4)
+- `[ ]` Stripe Identity for ID verification (Tier 2)
+- `[ ]` Dispute resolution workflow with evidence submission
+- `[ ]` Personal analytics dashboard (earnings charts, rating trends)
+- `[ ]` Referral system (credit on first completed gig, not signup)
+- `[ ]` Campus-wide trending categories dashboard
+- `[ ]` Notification system (in-app + email via Resend)
+- `[ ]` React Native (Expo) mobile app sharing the same Supabase backend

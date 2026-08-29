@@ -48,14 +48,38 @@ export async function POST(req: Request) {
         console.error('Error creating payment record:', paymentError)
       }
 
-      // 2. Update booking status to confirmed
-      const { error: bookingError } = await supabase
+      // 2. Update booking status to confirmed and fetch provider/requester
+      const { data: updatedBooking, error: bookingError } = await supabase
         .from('bookings')
         .update({ status: 'confirmed' })
         .eq('id', bookingId)
+        .select('id, provider_id, requester_id')
+        .single()
 
       if (bookingError) {
         console.error('Error updating booking status:', bookingError)
+      } else if (updatedBooking) {
+        // 3. Create a conversation for the provider and requester
+        const { data: convData, error: convError } = await supabase
+          .from('conversations')
+          .insert({ booking_id: bookingId })
+          .select('id')
+          .single()
+
+        if (convError) {
+          console.error('Error creating conversation:', convError)
+        } else if (convData) {
+          const { error: partsError } = await supabase
+            .from('conversation_participants')
+            .insert([
+              { conversation_id: convData.id, user_id: updatedBooking.provider_id },
+              { conversation_id: convData.id, user_id: updatedBooking.requester_id }
+            ])
+            
+          if (partsError) {
+            console.error('Error creating conversation participants:', partsError)
+          }
+        }
       }
     }
   }

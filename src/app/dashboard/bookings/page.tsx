@@ -71,7 +71,7 @@ export default async function BookingsPage() {
                   </div>
                 </div>
                 <div>
-                  <ProviderBookingActions bookingId={booking.id} status={booking.status} />
+                  <ProviderBookingActions bookingId={booking.id} status={booking.status} otherPartyId={booking.requester_id} />
                 </div>
               </GlassCard>
             ))}
@@ -103,7 +103,7 @@ export default async function BookingsPage() {
                   </div>
                 </div>
                 <div>
-                  <RequesterBookingActions bookingId={booking.id} status={booking.status} />
+                  <RequesterBookingActions bookingId={booking.id} status={booking.status} otherPartyId={booking.provider_id} />
                 </div>
               </GlassCard>
             ))}

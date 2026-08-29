@@ -30,37 +30,37 @@
 - `[x]` **Task board**: `/tasks` — list of open task requests, post new task form at `/dashboard/tasks/new`
 - `[x]` **Card hover animation**: Apply `translateY(-4px)` lift + accent border glow on all listing cards
 
-## Sprint 3: Booking + Payments (~2.5 hrs)
-- `[ ]` **Stripe setup**: Create Stripe account, get test keys → `.env.local`
-- `[ ]` **Booking Server Action**: Create booking record (status: `pending`) → create Stripe Checkout Session → redirect requester to Stripe
-- `[ ]` **Success page**: `/booking/success?session_id=...` — confirm payment, update booking status to `confirmed`
-- `[ ]` **Webhook handler**: `/api/webhooks/stripe` — listen for `checkout.session.completed`, update `payments` table
-- `[ ]` **Provider view**: `/dashboard/bookings` — see incoming bookings, "Mark Complete" button
-- `[ ]` **Requester confirm**: Once provider marks complete → requester gets "Confirm & Release Payment" button → updates `wallet_balance` on provider's profile
-- `[ ]` **Booking status flow**: `pending → confirmed → in_progress → completed`
+## Sprint 3: Booking + Payments (~2.5 hrs) — ✅ COMPLETE
+- `[x]` **Stripe setup**: Create Stripe account, get test keys → `.env.local`
+- `[x]` **Booking Server Action**: Create booking record (status: `pending`) → create Stripe Checkout Session → redirect requester to Stripe
+- `[x]` **Success page**: `/booking/success?session_id=...` — confirm payment, update booking status to `confirmed`
+- `[x]` **Webhook handler**: `/api/webhooks/stripe` — listen for `checkout.session.completed`, update `payments` table
+- `[x]` **Provider view**: `/dashboard/bookings` — see incoming bookings, "Mark Complete" button
+- `[x]` **Requester confirm**: Once provider marks complete → requester gets "Confirm & Release Payment" button → updates `wallet_balance` on provider's profile
+- `[x]` **Booking status flow**: `pending → confirmed → in_progress → completed`
 
-## Sprint 4: Real-Time Chat (~2 hrs)
-- `[ ]` **Conversation creation**: Auto-create conversation when booking is confirmed
-- `[ ]` **Chat UI**: `/dashboard/messages/[conversationId]` — message list + input, scrolls to bottom
-- `[ ]` **Supabase Realtime**: Subscribe to `INSERT` on `messages` table filtered by `conversation_id`
-- `[ ]` **Send message**: Server Action inserts into `messages` → Realtime pushes to other participant
-- `[ ]` **Chat list**: `/dashboard/messages` — list of all conversations with last message preview
-- `[ ]` **Two-tab test**: Open two browser windows, send messages, confirm instant delivery
+## Sprint 4: Real-Time Chat (~2 hrs) — ✅ COMPLETE
+- `[x]` **Conversation creation**: Auto-create conversation when booking is confirmed
+- `[x]` **Chat UI**: `/dashboard/messages/[conversationId]` — message list + input, scrolls to bottom
+- `[x]` **Supabase Realtime**: Subscribe to `INSERT` on `messages` table filtered by `conversation_id`
+- `[x]` **Send message**: Server Action inserts into `messages` → Realtime pushes to other participant
+- `[x]` **Chat list**: `/dashboard/messages` — list of all conversations with last message preview
+- `[x]` **Two-tab test**: Open two browser windows, send messages, confirm instant delivery
 
-## Sprint 5: Reviews + Trust + Dashboard (~2 hrs)
-- `[ ]` **Review form**: After booking is `completed`, show review form (1-5 stars, comment, structured tags)
-- `[ ]` **Review display**: Show reviews on provider's profile page and listing detail page
-- `[ ]` **Trust score recalc**: After review submission, update `avg_rating` and `completed_gigs` on `profiles`
-- `[ ]` **Dashboard**: `/dashboard` — earnings summary (total, this month), active bookings list, recent reviews, wallet balance
-- `[ ]` **Trust badges**: Display tier badge (New / Rising / Trusted / Top Rated) based on `completed_gigs` + `avg_rating` thresholds
+## Sprint 5: Reviews + Trust + Dashboard (~2 hrs) — ✅ COMPLETE
+- `[x]` **Review form**: After booking is `completed`, show review form (1-5 stars, comment, structured tags)
+- `[x]` **Review display**: Show reviews on provider's profile page and listing detail page
+- `[x]` **Trust score recalc**: After review submission, update `avg_rating` and `completed_gigs` on `profiles`
+- `[x]` **Dashboard**: `/dashboard` — earnings summary (total, this month), active bookings list, recent reviews, wallet balance
+- `[x]` **Trust badges**: Display tier badge (New / Rising / Trusted / Top Rated) based on `completed_gigs` + `avg_rating` thresholds
 
-## Sprint 6: Seed Data + Demo Polish (~2 hrs)
-- `[ ]` **Write seed script** (`scripts/seed.ts`): 15 users, 25 listings across all categories, 10 task requests, 20 bookings, 30 reviews, 5 conversations with messages
-- `[ ]` **Hero demo accounts**: Pre-configure "Maya Chen" (provider, 4.8★, 12 gigs) and "Jordan Rivera" (requester, freshman)
-- `[ ]` **Page transitions**: Add Framer Motion `AnimatePresence` with fade + slide on route changes
-- `[ ]` **Mobile responsive**: Test and fix all pages at 375px viewport width
-- `[ ]` **Loading states**: Add skeleton loaders on browse page and profile page
-- `[ ]` **Final deploy**: Push to Vercel, run seed against production Supabase, test full demo flow end-to-end
+## Sprint 6: Seed Data + Demo Polish (~2 hrs) — ✅ COMPLETE
+- `[x]` **Write seed script** (`scripts/seed.ts`): 15 users, 25 listings across all categories, 10 task requests, 20 bookings, 30 reviews, 5 conversations with messages
+- `[x]` **Hero demo accounts**: Pre-configure "Maya Chen" (provider, 4.8★, 12 gigs) and "Jordan Rivera" (requester, freshman)
+- `[x]` **Page transitions**: Add Framer Motion `AnimatePresence` with fade + slide on route changes
+- `[x]` **Mobile responsive**: Test and fix all pages at 375px viewport width
+- `[x]` **Loading states**: Add skeleton loaders on browse page and profile page
+- `[x]` **Final deploy**: Push to Vercel, run seed against production Supabase, test full demo flow end-to-end
 
 ---
 

@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import { ReviewList } from '@/components/reviews/review-list'
 import { GlassCard } from '@/components/shared/glass-card'
 import { CategoryBadge } from '@/components/shared/category-badge'
 import { UserAvatar } from '@/components/shared/user-avatar'
@@ -55,6 +56,11 @@ export default async function ListingPage(props: { params: Promise<{ id: string 
             <div className="prose dark:prose-invert max-w-none text-foreground/90">
               <p className="whitespace-pre-wrap">{listing.description}</p>
             </div>
+
+            <div className="pt-8 mt-8 border-t border-border/50">
+              <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+              <ReviewList listingId={listing.id} />
+            </div>
           </div>
         </div>
 
@@ -77,7 +83,7 @@ export default async function ListingPage(props: { params: Promise<{ id: string 
             </Link>
 
             <div className="space-y-3 pt-2">
-              <TrustBadge tier={listing.provider.verification_tier} className="w-full justify-center py-1.5" />
+              <TrustBadge tier={listing.provider.verification_tier} completedGigs={listing.provider.completed_gigs} avgRating={listing.provider.avg_rating} className="w-full justify-center py-1.5" />
             </div>
 
             <BookingButton listingId={listing.id} />

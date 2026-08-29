@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import { ReviewList } from '@/components/reviews/review-list'
 import { UserAvatar } from '@/components/shared/user-avatar'
 import { TrustBadge } from '@/components/shared/trust-badge'
 import { RatingStars } from '@/components/shared/rating-stars'
@@ -49,7 +50,7 @@ export default async function ProfilePage(props: { params: Promise<{ id: string 
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <TrustBadge tier={profile.verification_tier} />
+              <TrustBadge tier={profile.verification_tier} completedGigs={profile.completed_gigs} avgRating={profile.avg_rating} />
               <div className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium bg-muted/10">
                 <RatingStars rating={profile.avg_rating} max={1} />
                 <span>{profile.avg_rating?.toFixed(1) || "0.0"} ({profile.completed_gigs} gigs)</span>
@@ -98,6 +99,13 @@ export default async function ProfilePage(props: { params: Promise<{ id: string 
               </div>
             </div>
           </GlassCard>
+        </div>
+        </div>
+
+        {/* Reviews Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold border-b pb-4 border-border/50">Reviews</h2>
+          <ReviewList userId={profile.id} />
         </div>
       </div>
     </div>

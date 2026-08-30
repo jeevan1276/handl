@@ -186,7 +186,7 @@ export default async function ProfilePage(props: { params: Promise<{ id: string 
                           <span className="text-xs text-muted-foreground">({listing.booking_count} bookings)</span>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-foreground">${listing.price}</p>
+                          <p className="font-bold text-foreground">₹{listing.price}</p>
                           <p className="text-[10px] text-muted-foreground uppercase">{listing.pricing_type}</p>
                         </div>
                       </div>

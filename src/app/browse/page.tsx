@@ -126,7 +126,7 @@ export default async function BrowsePage(props: { searchParams: Promise<{ q?: st
                         {listing.provider.verification_tier != null && listing.provider.verification_tier > 0 && <TrustBadge tier={listing.provider.verification_tier} size="sm" />}
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold text-lg text-foreground">${listing.price}</div>
+                        <div className="font-semibold text-lg text-foreground">₹{listing.price}</div>
                         <div className="text-[10px] text-muted-foreground uppercase">{listing.pricing_type}</div>
                       </div>
                     </div>

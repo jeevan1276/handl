@@ -91,19 +91,6 @@ export default function LandingPage() {
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-100/50 dark:bg-amber-900/20 rounded-full blur-[120px] opacity-30 pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            Now serving 50+ campuses nationwide
-          </motion.div>
-          
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -286,7 +273,7 @@ export default function LandingPage() {
                         <span className="text-xs text-muted-foreground">({listing.reviews} reviews)</span>
                       </div>
                       <div className="mt-auto pt-2 flex items-center justify-between border-t border-border/50">
-                        <div className="font-bold text-lg text-foreground">${listing.price}</div>
+                        <div className="font-bold text-lg text-foreground">₹{listing.price}</div>
                         <div className="text-[10px] text-muted-foreground uppercase">{listing.pricing}</div>
                       </div>
                     </div>

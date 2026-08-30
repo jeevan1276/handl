@@ -84,7 +84,7 @@ export default async function BookingsPage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <DollarSign className="w-4 h-4" />
-                  <span className="font-medium text-foreground">${booking.agreed_price}</span>
+                  <span className="font-medium text-foreground">₹{booking.agreed_price}</span>
                 </div>
                 {booking.scheduled_for && (
                   <div className="flex items-center gap-1.5">

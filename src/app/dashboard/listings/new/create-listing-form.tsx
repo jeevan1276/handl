@@ -107,7 +107,7 @@ export function CreateListingForm({ userId }: { userId: string }) {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="price" className="text-sm font-medium text-foreground">Price ($)</label>
+            <label htmlFor="price" className="text-sm font-medium text-foreground">Price (₹)</label>
             <Input id="price" name="price" type="number" step="0.01" min="0" placeholder="25.00" required disabled={loading} className="bg-background border-border" />
           </div>
 

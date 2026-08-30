@@ -116,7 +116,7 @@ export default async function ListingPage(props: { params: Promise<{ id: string 
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Pricing</p>
-                  <p className="font-semibold text-foreground">${listing.price} <span className="font-normal text-muted-foreground">/{listing.pricing_type}</span></p>
+                  <p className="font-semibold text-foreground">₹{listing.price} <span className="font-normal text-muted-foreground">/{listing.pricing_type}</span></p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -188,7 +188,7 @@ export default async function ListingPage(props: { params: Promise<{ id: string 
           <CraftCard variant="elevated" className="sticky top-24 space-y-0 overflow-hidden" padding="none">
             {/* Price Header */}
             <div className="p-6 border-b border-border/50 text-center bg-muted/30">
-              <div className="text-4xl font-bold text-foreground">${listing.price}</div>
+              <div className="text-4xl font-bold text-foreground">₹{listing.price}</div>
               <div className="text-sm text-muted-foreground uppercase tracking-wider mt-1">{listing.pricing_type}</div>
               <p className="text-xs text-muted-foreground mt-2">You won&apos;t be charged until the provider confirms</p>
             </div>

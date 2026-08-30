@@ -5,7 +5,7 @@ import { UserAvatar } from '@/components/shared/user-avatar'
 import { TrustBadge } from '@/components/shared/trust-badge'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Clock, MapPin, AlertCircle, DollarSign, ArrowRight, Plus, ClipboardList } from 'lucide-react'
+import { Clock, MapPin, AlertCircle, IndianRupee, ArrowRight, Plus, ClipboardList } from 'lucide-react'
 
 export default async function TaskBoardPage() {
   const supabase = await createClient()
@@ -96,9 +96,9 @@ export default async function TaskBoardPage() {
                   <div className="flex flex-col items-end gap-3 min-w-[140px]">
                     <div className="text-right">
                       <div className="flex items-baseline gap-1">
-                        <DollarSign className="w-5 h-5 text-muted-foreground" />
-                        <span className="font-bold text-2xl text-foreground">${task.budget_min}</span>
-                        {task.budget_max && <span className="text-muted-foreground"> - ${task.budget_max}</span>}
+                        <IndianRupee className="w-5 h-5 text-muted-foreground" />
+                        <span className="font-bold text-2xl text-foreground">₹{task.budget_min}</span>
+                        {task.budget_max && <span className="text-muted-foreground"> - ₹{task.budget_max}</span>}
                       </div>
                       <div className="text-xs text-muted-foreground uppercase">Budget</div>
                     </div>

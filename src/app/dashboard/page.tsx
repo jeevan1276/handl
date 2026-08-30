@@ -18,11 +18,6 @@ async function getUser() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
-          )
-        },
       },
     }
   )
@@ -72,10 +67,10 @@ export default async function DashboardPage() {
   const stats = [
     {
       label: "Wallet Balance",
-      value: `$${profile?.wallet_balance || 0}`,
+      value: `₹${profile?.wallet_balance || 0}`,
       icon: CreditCard,
       iconBg: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
-      trend: "+$47.50 this week",
+      trend: "+₹47.50 this week",
       trendColor: "text-emerald-600 dark:text-emerald-400",
       href: "/dashboard/wallet",
     },

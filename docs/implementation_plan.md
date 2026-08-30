@@ -1,4 +1,4 @@
-# Quad — Campus Services Marketplace: Implementation Plan (Hackathon Edition)
+# handl — Campus Services Marketplace: Implementation Plan (Hackathon Edition)
 
 > **Scope:** Build a fully functional, demo-ready campus marketplace in a hackathon sprint, with architecture that doesn't need to be thrown away afterward.
 > **Philosophy:** Ship the critical path end-to-end first. Polish only what the judges will see. Defer everything that doesn't affect the demo — but defer it into a real plan, not a graveyard.

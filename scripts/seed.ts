@@ -178,7 +178,7 @@ async function seed() {
   const bookings = []
   for (let i = 0; i < 20; i++) {
     const isListingBooking = faker.datatype.boolean() && listings.length > 0
-    let providerId, requesterId, listingId, taskRequestId, price
+    let providerId: string, requesterId: string, listingId: string | null = null, taskRequestId: string | null = null, price: number
 
     if (isListingBooking) {
       const listing = faker.helpers.arrayElement(listings)

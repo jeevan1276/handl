@@ -1,11 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
-import { GlassCard } from '@/components/shared/glass-card'
+import { CraftCard } from '@/components/shared/glass-card'
 import { CategoryBadge } from '@/components/shared/category-badge'
 import { UserAvatar } from '@/components/shared/user-avatar'
 import { TrustBadge } from '@/components/shared/trust-badge'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Search } from 'lucide-react'
+import { Search, Filter, X } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
@@ -29,9 +29,6 @@ export default async function BrowsePage(props: { searchParams: Promise<{ q?: st
     query = query.eq('category', searchParams.category)
   }
   if (searchParams.q) {
-    // Basic ilike search if fts isn't working perfectly, but let's try tsvector
-    // Actually ilike is safer for partial words in a hackathon, but schema has fts.
-    // Let's use ilike on title for simplicity and robustness with partial matches.
     query = query.ilike('title', `%${searchParams.q}%`)
   }
 
@@ -54,7 +51,7 @@ export default async function BrowsePage(props: { searchParams: Promise<{ q?: st
                 name="q" 
                 defaultValue={searchParams.q}
                 placeholder="Search services..." 
-                className="pl-9 glass-card bg-white/5 border-white/10"
+                className="pl-9 bg-card border-border"
               />
             </div>
             {searchParams.category && <input type="hidden" name="category" value={searchParams.category} />}
@@ -64,58 +61,82 @@ export default async function BrowsePage(props: { searchParams: Promise<{ q?: st
 
         {/* Categories */}
         <div className="flex flex-wrap gap-2">
-          <Link href="/browse" className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!searchParams.category ? 'bg-primary text-primary-foreground' : 'bg-muted/50 hover:bg-muted text-muted-foreground'}`}>
+          <Link href="/browse" className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${!searchParams.category ? 'bg-primary text-primary-foreground shadow-sm' : 'bg-muted hover:bg-muted/80 text-foreground border border-border'}`}>
             All
           </Link>
           {CATEGORIES.map(cat => (
             <Link 
               key={cat} 
               href={`/browse?category=${cat}${searchParams.q ? `&q=${searchParams.q}` : ''}`}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${searchParams.category === cat ? 'bg-primary text-primary-foreground' : 'bg-muted/50 hover:bg-muted text-muted-foreground'}`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${searchParams.category === cat ? 'bg-primary text-primary-foreground shadow-sm' : 'bg-muted hover:bg-muted/80 text-foreground border border-border'}`}
             >
               {cat.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
             </Link>
           ))}
         </div>
 
+        {/* Active Filters */}
+        {(searchParams.q || searchParams.category) && (
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-muted-foreground">Filters:</span>
+            {searchParams.q && (
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full border border-border">
+                <span>"{searchParams.q}"</span>
+                <button type="button" onClick={() => window.location.href = searchParams.category ? `/browse?category=${searchParams.category}` : '/browse'} className="hover:text-foreground">
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            {searchParams.category && (
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full border border-border">
+                <span>{searchParams.category.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</span>
+                <button type="button" onClick={() => window.location.href = searchParams.q ? `/browse?q=${searchParams.q}` : '/browse'} className="hover:text-foreground">
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            <a href="/browse" className="text-primary hover:underline text-sm">Clear all</a>
+          </div>
+        )}
+
         {/* Listings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {listings && listings.length > 0 ? (
             listings.map((listing: { id: string, title: string, category: string, price: number, pricing_type: string, image_urls: string[] | null, provider: { name: string, avatar_url: string | null, verification_tier: number | null } }) => (
               <Link key={listing.id} href={`/listing/${listing.id}`}>
-                <GlassCard animated className="h-full flex flex-col p-0 overflow-hidden bg-white/[0.02] border-white/5 group">
-                  <div className="relative h-48 w-full bg-muted/20">
+                <CraftCard variant="default" interactive className="h-full flex flex-col p-0 overflow-hidden" padding="none">
+                  <div className="relative h-48 w-full bg-muted">
                     {listing.image_urls && listing.image_urls[0] ? (
                       <Image src={listing.image_urls[0]} alt={listing.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-accent/5">No Image</div>
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-muted">
+                        <span className="text-sm">No Image</span>
+                      </div>
                     )}
                     <div className="absolute top-3 left-3">
-                      <CategoryBadge category={listing.category} className="bg-background/80 backdrop-blur-md" />
+                      <CategoryBadge category={listing.category} size="sm" variant="filled" />
                     </div>
                   </div>
                   <div className="p-5 flex-1 flex flex-col gap-3">
-                    <div className="flex justify-between items-start gap-2">
-                      <h3 className="font-semibold text-lg line-clamp-2 leading-tight group-hover:text-primary transition-colors">{listing.title}</h3>
-                    </div>
-                    <div className="mt-auto pt-2 flex items-center justify-between border-t border-border/50">
-                      <div className="flex items-center gap-2">
-                        <UserAvatar url={listing.provider.avatar_url} name={listing.provider.name} className="h-6 w-6" />
-                        <span className="text-sm font-medium text-muted-foreground truncate max-w-[100px]">{listing.provider.name}</span>
-                        {listing.provider.verification_tier != null && listing.provider.verification_tier > 0 && <TrustBadge tier={listing.provider.verification_tier} className="px-1 py-0 h-4 border-none bg-transparent [&>svg]:w-3 [&>svg]:h-3" />}
+                    <h3 className="font-semibold text-lg line-clamp-2 leading-tight group-hover:text-primary transition-colors">{listing.title}</h3>
+                    <div className="mt-auto pt-3 flex items-center justify-between border-t border-border/50">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <UserAvatar url={listing.provider.avatar_url} name={listing.provider.name} size="sm" />
+                        <span className="text-sm font-medium text-muted-foreground truncate max-w-[120px]">{listing.provider.name}</span>
+                        {listing.provider.verification_tier != null && listing.provider.verification_tier > 0 && <TrustBadge tier={listing.provider.verification_tier} size="sm" />}
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold">${listing.price}</div>
+                        <div className="font-semibold text-lg text-foreground">${listing.price}</div>
                         <div className="text-[10px] text-muted-foreground uppercase">{listing.pricing_type}</div>
                       </div>
                     </div>
                   </div>
-                </GlassCard>
+                </CraftCard>
               </Link>
             ))
           ) : (
             <div className="col-span-full py-24 text-center space-y-4">
-              <div className="w-16 h-16 mx-auto bg-muted/20 rounded-full flex items-center justify-center text-muted-foreground">
+              <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center text-muted-foreground">
                 <Search className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold">No listings found</h3>

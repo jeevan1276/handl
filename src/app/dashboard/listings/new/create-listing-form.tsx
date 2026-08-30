@@ -4,10 +4,10 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { GlassCard } from "@/components/shared/glass-card"
+import { CraftCard } from "@/components/shared/glass-card"
 import { createListing } from "./actions"
 import { createClient } from "@/lib/supabase/client"
-import { ImagePlus, X } from "lucide-react"
+import { ImagePlus, X, Loader2, Camera } from "lucide-react"
 import Image from "next/image"
 
 const CATEGORIES = [
@@ -71,36 +71,34 @@ export function CreateListingForm({ userId }: { userId: string }) {
     }
   }
 
-  const selectClasses = "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-
   return (
-    <GlassCard>
+    <CraftCard variant="elevated" className="p-8" padding="none">
       <form onSubmit={handleSubmit} className="space-y-6">
         {error && <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20">{error}</div>}
         
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="space-y-2">
-            <label htmlFor="title" className="text-sm font-medium">Listing Title</label>
-            <Input id="title" name="title" placeholder="e.g. Expert Math Tutoring" required disabled={loading} />
+            <label htmlFor="title" className="text-sm font-medium text-foreground">Listing Title</label>
+            <Input id="title" name="title" placeholder="e.g. Expert Math Tutoring" required disabled={loading} className="bg-background border-border" />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="description" className="text-sm font-medium">Description</label>
-            <Textarea id="description" name="description" placeholder="Describe what you offer in detail..." required disabled={loading} className="min-h-[120px]" />
+            <label htmlFor="description" className="text-sm font-medium text-foreground">Description</label>
+            <Textarea id="description" name="description" placeholder="Describe what you offer in detail..." required disabled={loading} className="min-h-[120px] bg-background border-border" />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="category" className="text-sm font-medium">Category</label>
-              <select id="category" name="category" required disabled={loading} className={selectClasses} defaultValue="tutoring">
+              <label htmlFor="category" className="text-sm font-medium text-foreground">Category</label>
+              <select id="category" name="category" required disabled={loading} className="flex h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="tutoring">
                 {CATEGORIES.map(cat => (
                   <option key={cat} value={cat}>{cat.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</option>
                 ))}
               </select>
             </div>
             <div className="space-y-2">
-              <label htmlFor="pricing_type" className="text-sm font-medium">Pricing Type</label>
-              <select id="pricing_type" name="pricing_type" required disabled={loading} className={selectClasses} defaultValue="fixed">
+              <label htmlFor="pricing_type" className="text-sm font-medium text-foreground">Pricing Type</label>
+              <select id="pricing_type" name="pricing_type" required disabled={loading} className="flex h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" defaultValue="fixed">
                 <option value="hourly">Hourly Rate</option>
                 <option value="fixed">Fixed Price</option>
                 <option value="negotiable">Negotiable</option>
@@ -109,27 +107,27 @@ export function CreateListingForm({ userId }: { userId: string }) {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="price" className="text-sm font-medium">Price ($)</label>
-            <Input id="price" name="price" type="number" step="0.01" min="0" placeholder="25.00" required disabled={loading} />
+            <label htmlFor="price" className="text-sm font-medium text-foreground">Price ($)</label>
+            <Input id="price" name="price" type="number" step="0.01" min="0" placeholder="25.00" required disabled={loading} className="bg-background border-border" />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Images</label>
+            <label className="text-sm font-medium text-foreground">Images</label>
             <div className="flex flex-wrap gap-4">
               {imageUrls.map((url, i) => (
-                <div key={url} className="relative w-24 h-24 rounded-md border overflow-hidden group">
+                <div key={url} className="relative w-24 h-24 rounded-lg border border-border overflow-hidden group">
                   <Image src={url} alt={`Upload ${i}`} fill className="object-cover" />
                   <button 
                     type="button" 
                     onClick={() => removeImage(i)}
-                    className="absolute top-1 right-1 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-1 right-1 bg-background/80 text-foreground p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 </div>
               ))}
-              <label className="w-24 h-24 rounded-md border-2 border-dashed border-border flex flex-col items-center justify-center text-muted-foreground hover:bg-muted/50 cursor-pointer transition-colors">
-                <ImagePlus className="w-6 h-6 mb-1" />
+              <label className="w-24 h-24 rounded-lg border-2 border-dashed border-border flex flex-col items-center justify-center text-muted-foreground hover:bg-muted/50 cursor-pointer transition-colors">
+                <Camera className="w-6 h-6 mb-1" />
                 <span className="text-xs">{uploading ? "..." : "Add Image"}</span>
                 <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading || loading} />
               </label>
@@ -137,10 +135,17 @@ export function CreateListingForm({ userId }: { userId: string }) {
           </div>
         </div>
 
-        <Button type="submit" className="w-full" disabled={loading || uploading}>
-          {loading ? "Publishing..." : "Publish Listing"}
+        <Button type="submit" className="w-full" disabled={loading || uploading} size="lg">
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Publishing...
+            </>
+          ) : (
+            "Publish Listing"
+          )}
         </Button>
       </form>
-    </GlassCard>
+    </CraftCard>
   )
 }

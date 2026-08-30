@@ -1,4 +1,4 @@
--- Quad Campus Marketplace - Database Schema
+-- handl Campus Marketplace - Database Schema
 -- Run this in Supabase SQL Editor
 
 -- ══════════════════════════════════════

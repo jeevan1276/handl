@@ -4,10 +4,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { GlassCard } from "@/components/shared/glass-card"
+import { CraftCard } from "@/components/shared/glass-card"
 import { submitOnboarding } from "./actions"
 import { createClient } from "@/lib/supabase/client"
 import { UserAvatar } from "@/components/shared/user-avatar"
+import { Camera, Loader2 } from "lucide-react"
 
 export function OnboardingForm({ userId }: { userId: string }) {
   const [loading, setLoading] = useState(false)
@@ -63,59 +64,75 @@ export function OnboardingForm({ userId }: { userId: string }) {
   }
 
   return (
-    <GlassCard>
+    <CraftCard variant="elevated" className="p-8" padding="none">
       <form onSubmit={handleSubmit} className="space-y-6">
         {error && <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20">{error}</div>}
         
         <div className="flex flex-col items-center gap-4">
-          <UserAvatar url={avatarUrl} name="New User" className="h-24 w-24" />
-          <div className="flex flex-col items-center gap-2">
-            <label htmlFor="avatar" className="cursor-pointer text-sm font-medium text-primary hover:underline">
-              {uploading ? "Uploading..." : "Upload Avatar"}
+          <div className="relative">
+            <UserAvatar url={avatarUrl} name="New User" size="2xl" />
+            <label 
+              htmlFor="avatar" 
+              className="absolute bottom-0 right-0 cursor-pointer bg-primary text-primary-foreground p-2 rounded-full shadow-lg hover:bg-primary/90 transition-colors"
+            >
+              <Camera className="w-5 h-5" />
+              <input 
+                type="file" 
+                id="avatar" 
+                accept="image/*" 
+                className="hidden" 
+                onChange={handleAvatarUpload}
+                disabled={uploading || loading}
+              />
             </label>
-            <input 
-              type="file" 
-              id="avatar" 
-              accept="image/*" 
-              className="hidden" 
-              onChange={handleAvatarUpload}
-              disabled={uploading || loading}
-            />
           </div>
+          <p className="text-sm text-muted-foreground">Click to upload a profile photo</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium">Full Name</label>
-            <Input id="name" name="name" placeholder="Alex Chen" required disabled={loading} />
+            <label htmlFor="name" className="text-sm font-medium text-foreground">Full Name</label>
+            <Input id="name" name="name" placeholder="Alex Chen" required disabled={loading} className="bg-background border-border" />
           </div>
           
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="major" className="text-sm font-medium">Major</label>
-              <Input id="major" name="major" placeholder="Computer Science" disabled={loading} />
+              <label htmlFor="major" className="text-sm font-medium text-foreground">Major</label>
+              <Input id="major" name="major" placeholder="Computer Science" disabled={loading} className="bg-background border-border" />
             </div>
             <div className="space-y-2">
-              <label htmlFor="classYear" className="text-sm font-medium">Class Year</label>
-              <Input id="classYear" name="classYear" placeholder="2027" disabled={loading} />
+              <label htmlFor="classYear" className="text-sm font-medium text-foreground">Class Year</label>
+              <Input id="classYear" name="classYear" placeholder="2027" disabled={loading} className="bg-background border-border" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="skills" className="text-sm font-medium">Skills (comma separated)</label>
-            <Input id="skills" name="skills" placeholder="React, Figma, Photography" disabled={loading} />
+            <label htmlFor="campus" className="text-sm font-medium text-foreground">Campus</label>
+            <Input id="campus" name="campus" placeholder="Stanford University" disabled={loading} className="bg-background border-border" />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="bio" className="text-sm font-medium">Bio</label>
-            <Textarea id="bio" name="bio" placeholder="Tell the campus a bit about yourself..." disabled={loading} />
+            <label htmlFor="skills" className="text-sm font-medium text-foreground">Skills (comma separated)</label>
+            <Input id="skills" name="skills" placeholder="React, Figma, Photography" disabled={loading} className="bg-background border-border" />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="bio" className="text-sm font-medium text-foreground">Bio</label>
+            <Textarea id="bio" name="bio" placeholder="Tell the campus a bit about yourself..." disabled={loading} className="bg-background border-border min-h-[100px]" />
           </div>
         </div>
 
-        <Button type="submit" className="w-full" disabled={loading || uploading}>
-          {loading ? "Saving..." : "Complete Profile"}
+        <Button type="submit" className="w-full" disabled={loading || uploading} size="lg">
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            "Complete Profile"
+          )}
         </Button>
       </form>
-    </GlassCard>
+    </CraftCard>
   )
 }

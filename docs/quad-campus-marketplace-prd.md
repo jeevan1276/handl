@@ -1,9 +1,9 @@
-# Quad — Campus Services Marketplace
+# handl — Campus Services Marketplace
 **Product Requirements Document**
 
 Version 1.0 (Draft) · August 29, 2026 · Status: For Review
 
-*"Quad" is a working name — a nod to the campus quad as the traditional center of student life and commerce. Rename freely.*
+*"handl" is a working name — a nod to the campus quad as the traditional center of student life and commerce. Rename freely.*
 
 ---
 
@@ -24,11 +24,11 @@ Version 1.0 (Draft) · August 29, 2026 · Status: For Review
 
 ## 1. Executive Summary
 
-Quad is a campus-only marketplace where students turn skills into income and get everyday tasks done by someone they can actually trust — a verified, rated, accountable peer, not an anonymous name at the bottom of a 200-message group chat.
+handl is a campus-only marketplace where students turn skills into income and get everyday tasks done by someone they can actually trust — a verified, rated, accountable peer, not an anonymous name at the bottom of a 200-message group chat.
 
 It replaces the current default (GroupMe, Discord, Facebook groups, paper flyers, word of mouth) with one structured layer for campus commerce: searchable profiles and listings, escrow-protected payments, and a reputation system that follows a student across their entire time on campus.
 
-The wedge is **trust**: because every user is verified against a .edu email (with optional deeper ID verification), and every reputation is public, durable, and hard to fake, Quad can support higher-value and higher-frequency transactions than any open group chat ever could. The moat, once a campus reaches critical mass, is **liquidity + data**: Quad becomes the fastest way to find or offer almost anything on campus, and the resulting picture of the informal campus economy becomes something the university itself will pay to see.
+The wedge is **trust**: because every user is verified against a .edu email (with optional deeper ID verification), and every reputation is public, durable, and hard to fake, handl can support higher-value and higher-frequency transactions than any open group chat ever could. The moat, once a campus reaches critical mass, is **liquidity + data**: handl becomes the fastest way to find or offer almost anything on campus, and the resulting picture of the informal campus economy becomes something the university itself will pay to see.
 
 ---
 
@@ -114,11 +114,11 @@ Short answers here; full specs are cross-referenced into Section 6-8.
 - A rich profile: skills, rate, availability calendar, portfolio uploads (images, PDFs, links to GitHub/Behance/personal sites), and an optional 30-second video intro.
 - Objective performance stats displayed alongside the portfolio: completed-gig count, on-time rate, response time, repeat-client rate.
 - Earned badges (Top Rated, Rising Talent, category mastery) layered on top of self-reported skills, so credibility is visible at a glance.
-- A shareable public profile link students can drop into a resume or LinkedIn — which doubles as a quiet growth loop for Quad itself.
+- A shareable public profile link students can drop into a resume or LinkedIn — which doubles as a quiet growth loop for handl itself.
 
 ### What incentives keep users active and engaged?
 - The primary incentive is real, and the platform should never obscure that: **money**, paid reliably and quickly.
-- Career capital: a portfolio and rating history that's genuinely useful outside Quad, not just inside it.
+- Career capital: a portfolio and rating history that's genuinely useful outside handl, not just inside it.
 - Light, opt-in gamification — milestone badges, category leaderboards, seasonal challenges (Section 7) — kept intentionally away from manipulative patterns like punishing streaks or pay-to-win visibility.
 - Seasonal moments the platform can own: move-in/move-out week, finals-week tutoring surge, formal season styling and photography.
 - For requesters specifically: speed and reliability are the reward, reinforced with light loyalty perks for repeat use.
@@ -144,7 +144,7 @@ Short answers here; full specs are cross-referenced into Section 6-8.
 
 **Reviews** — chronological, filterable, tag-based (see 6.3).
 
-**Trust tier badge** — New / Trusted / Top Rated / Quad Pro, plus any earned achievement or campus-role badges (see Section 7).
+**Trust tier badge** — New / Trusted / Top Rated / handl Pro, plus any earned achievement or campus-role badges (see Section 7).
 
 **Privacy controls** — students choose what's visible to the public web vs. logged-in students only, and can hide exact earnings while still showing rating and completion count.
 
@@ -178,7 +178,7 @@ Two complementary flows, because supply and demand don't always initiate the sam
 | 0 — Unverified | Any email | Browse only; cannot post or transact |
 | 1 — Student Verified | Confirmed .edu email | Post/apply to gigs, message, transact up to a starter value cap |
 | 2 — ID Verified | Government ID + selfie liveness check | Uncapped gig value, in-person meetup gigs, "Verified" badge |
-| 3 — Campus Verified | Confirmed campus role (RA, TA, club officer, varsity athlete) | Role badge, boosted trust-score weighting, Quad Pro fast-track |
+| 3 — Campus Verified | Confirmed campus role (RA, TA, club officer, varsity athlete) | Role badge, boosted trust-score weighting, handl Pro fast-track |
 
 **Ratings & reviews**
 - Double-blind: neither side sees the other's rating until both have submitted (or 14 days pass), which prevents retaliatory or reciprocal inflation.
@@ -186,7 +186,7 @@ Two complementary flows, because supply and demand don't always initiate the sam
 - Reviews only unlock after payment has actually cleared escrow — no reviews from people who never transacted.
 - A composite trust score (rating average, recency-weighted volume, completion rate, cancellation rate) is shown as a tier, not a raw number, so it's harder to game and easier to read.
 
-**Safety features** — public, well-known campus locations suggested for first-time in-person meetups; an opt-in "share this meetup" button (time-limited, sent to a friend or Quad's safety line); a 24/7 in-app report/safety flow linked to campus security; automatic content moderation on profiles and messages.
+**Safety features** — public, well-known campus locations suggested for first-time in-person meetups; an opt-in "share this meetup" button (time-limited, sent to a friend or handl's safety line); a 24/7 in-app report/safety flow linked to campus security; automatic content moderation on profiles and messages.
 
 **Financial protection** — escrow by default; a "Quad Guarantee" refund path if delivered work doesn't match what was described; fraud monitoring for unusual payment patterns.
 
@@ -214,9 +214,9 @@ Two complementary flows, because supply and demand don't always initiate the sam
 
 **Referral system** — credit to both referrer and referee, released only after the referee *completes* their first gig, so the reward tracks real activation rather than just sign-ups.
 
-**Student communities** — category-based spaces (e.g. "Quad Designers," "Quad Tutors") for peer feedback and IRL meetups, plumbed into the Discord/Slack presences students already use rather than forcing a new community app.
+**Student communities** — category-based spaces (e.g. "handl Designers," "handl Tutors") for peer feedback and IRL meetups, plumbed into the Discord/Slack presences students already use rather than forcing a new community app.
 
-**Local business partnerships** — a "Quad Perks" discount layer at partner cafés, print shops, and gyms for verified students, plus a channel for local businesses to post their own gigs (flyering, social coverage, event staffing) — a second, non-peer-to-peer demand source.
+**Local business partnerships** — a "handl Perks" discount layer at partner cafés, print shops, and gyms for verified students, plus a channel for local businesses to post their own gigs (flyering, social coverage, event staffing) — a second, non-peer-to-peer demand source.
 
 **Gamification & achievement badges** — milestone badges (first gig, 10/50/100 completed), quality badges (5-star streak, "Would Rebook" above 90%), and seasonal badges ("Finals Week Hero," "Move-In MVP"), all opt-in to display. Kept deliberately light: no punitive streak resets, no pay-to-win trust score, and every promoted listing clearly labeled as such — engagement mechanics should never come at the cost of the trust system they sit next to.
 
@@ -229,9 +229,9 @@ Two complementary flows, because supply and demand don't always initiate the sam
 | Stream | How it works | Who pays |
 |---|---|---|
 | Marketplace take rate | A percentage fee on each completed transaction — the core revenue line, in the same broad range peer-to-peer marketplaces have used for years | Provider, optionally split with requester |
-| Quad Pro subscription | Monthly plan: lower take rate, priority search placement, advanced analytics, instant payout | Provider (opt-in) |
+| handl Pro subscription | Monthly plan: lower take rate, priority search placement, advanced analytics, instant payout | Provider (opt-in) |
 | Promoted listings | Pay to surface at the top of a category, clearly labeled "Promoted" so it never masquerades as a trust signal | Provider (opt-in) |
-| Local business partnerships | Sponsorship or per-post fees for gig posts and "Quad Perks" discounts | Local business |
+| Local business partnerships | Sponsorship or per-post fees for gig posts and "handl Perks" discounts | Local business |
 | University/campus partnership | Co-branded deployment, official staffing tool for campus events, access to the Campus Insights layer | University department (career services, student affairs, residential life) |
 | Aggregated insights add-on | Deeper anonymized trend reporting bundled into the university license | University |
 
@@ -257,7 +257,7 @@ Payments run through established infrastructure (e.g. Stripe Connect) rather tha
 | 0 — Pre-launch | Seed the market | Concierge-recruit founding providers, 2–3 campus-org demand partnerships, waitlist page | 100+ providers signed up before public launch |
 | 1 — MVP | Prove the core loop | Profiles, service catalog + task board, in-app chat, escrow payments, ratings/reviews, .edu verification, search & filters | 70%+ of posted gigs filled within 48h |
 | 2 — Growth | Deepen trust & retention | ID verification tier, dispute resolution flow, personal + campus dashboards, referral program, ambassador program, achievement badges | Positive month-over-month active users; repeat-booking rate above ~40% |
-| 3 — Scale | Expand & monetize | AI smart-match & natural-language search, Quad Pro subscription, promoted listings, local business partnerships, second and third campus launches | Positive contribution margin per campus |
+| 3 — Scale | Expand & monetize | AI smart-match & natural-language search, handl Pro subscription, promoted listings, local business partnerships, second and third campus launches | Positive contribution margin per campus |
 | 4 — Maturity | Durable moat | University B2B insights product, alumni tier, cross-campus liquidity for remote-friendly gigs, loyalty program | Signed university partnership; multi-campus network effects live |
 
 ---
@@ -269,7 +269,7 @@ Payments run through established infrastructure (e.g. Stripe Connect) rather tha
 | Cold start (no supply → no demand → no supply) | Classic marketplace death spiral | Concierge-seeded founding providers; campus-org demand partnerships; ambassador program |
 | In-person meetup safety incident | Real physical risk, and a brand-defining trust risk | Verification tiers, safe-meetup suggestions, opt-in location sharing, 24/7 report flow, fast moderation response |
 | Payments & regulatory exposure | Money-transmission and 1099 reporting obligations | Use licensed payment infrastructure (Stripe Connect or equivalent) rather than a self-built wallet; provide clean tax documentation; legal review pre-launch |
-| University policy conflict | Solicitation rules or overlap with career services/work-study could get Quad restricted on campus | Partner proactively with student affairs/career services rather than launching around them |
+| University policy conflict | Solicitation rules or overlap with career services/work-study could get handl restricted on campus | Partner proactively with student affairs/career services rather than launching around them |
 | Off-platform disintermediation | Users transact off-app to dodge fees, eroding revenue | Reasonable take rate; make on-platform payment clearly safer via the escrow guarantee; keep enough value (scheduling, portfolio, dispute protection) that going off-platform feels riskier, not cheaper |
 | Low-quality or spam listings | Erodes trust across the whole marketplace, not just one listing | New-account rate limits, moderation queue, reputation-gated posting privileges |
 | Gamification drifting into dark patterns | User burnout and ethical/brand risk | Opt-in streaks and leaderboards framed around consistency, not loss; clearly labeled promoted listings; no pay-to-win trust score |
@@ -283,4 +283,4 @@ Payments run through established infrastructure (e.g. Stripe Connect) rather tha
 - Which campus is the right beachhead, and what signals (dorm density, walkability, existing informal-economy chatter) should decide it?
 - How strict should enforcement be against off-platform payment in the early, low-liquidity days, versus tolerating some of it while the value prop matures?
 - Legal classification of high-volume providers — contractor status and tax treatment will need review as individual earnings scale.
-- Should Quad allow non-enrolled community members (e.g., staff, faculty) at all, or stay strictly scoped to verified enrolled students for v1? *(Recommendation: strictly enrolled students only for v1 — it keeps verification simple and keeps the trust model clean.)*
+- Should handl allow non-enrolled community members (e.g., staff, faculty) at all, or stay strictly scoped to verified enrolled students for v1? *(Recommendation: strictly enrolled students only for v1 — it keeps verification simple and keeps the trust model clean.)*

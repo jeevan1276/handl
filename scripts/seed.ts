@@ -92,7 +92,7 @@ async function seed() {
           major: faker.person.jobArea(),
           bio: faker.lorem.paragraph(),
           skills: [faker.word.sample(), faker.word.sample(), faker.word.sample()],
-          hourly_rate: faker.number.int({ min: 15, max: 50 }),
+          hourly_rate: faker.number.int({ min: 200, max: 2000 }),
           is_available: hero ? hero.is_available : faker.datatype.boolean(),
           verification_tier: faker.number.int({ min: 1, max: 3 }),
           trust_score: faker.number.float({ min: 4.0, max: 5.0, fractionDigits: 2 }),
@@ -129,7 +129,7 @@ async function seed() {
         category: faker.helpers.arrayElement(CATEGORIES),
         tags: [faker.commerce.productAdjective(), faker.commerce.productAdjective()],
         pricing_type: faker.helpers.arrayElement(['hourly', 'fixed', 'negotiable']),
-        price: faker.number.int({ min: 10, max: 150 }),
+        price: faker.number.int({ min: 100, max: 15000 }),
         status: 'active',
         booking_count: faker.number.int({ min: 0, max: 10 }),
         avg_rating: faker.number.float({ min: 4.0, max: 5.0, fractionDigits: 2 }),
@@ -156,8 +156,8 @@ async function seed() {
         title: faker.hacker.phrase(),
         description: faker.lorem.paragraph(),
         category: faker.helpers.arrayElement(CATEGORIES),
-        budget_min: faker.number.int({ min: 10, max: 30 }),
-        budget_max: faker.number.int({ min: 40, max: 100 }),
+        budget_min: faker.number.int({ min: 100, max: 500 }),
+        budget_max: faker.number.int({ min: 1000, max: 10000 }),
         deadline: faker.date.soon({ days: 14 }).toISOString(),
         location: faker.location.streetAddress(),
         urgency: faker.helpers.arrayElement(['low', 'medium', 'high', 'urgent']),
@@ -178,7 +178,7 @@ async function seed() {
   const bookings = []
   for (let i = 0; i < 20; i++) {
     const isListingBooking = faker.datatype.boolean() && listings.length > 0
-    let providerId, requesterId, listingId, taskRequestId, price
+    let providerId: string, requesterId: string, listingId: string | null = null, taskRequestId: string | null = null, price: number
 
     if (isListingBooking) {
       const listing = faker.helpers.arrayElement(listings)

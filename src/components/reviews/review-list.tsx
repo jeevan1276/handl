@@ -59,7 +59,7 @@ export async function ReviewList({ userId, listingId }: ReviewListProps) {
         <GlassCard key={review.id} className="p-4">
           <div className="flex justify-between items-start mb-2">
             <div className="flex items-center gap-2">
-              <UserAvatar url={review.reviewer?.avatar_url} name={review.reviewer?.name} size={32} />
+              <UserAvatar url={review.reviewer?.avatar_url} name={review.reviewer?.name} size="sm" />
               <div>
                 <p className="font-semibold text-sm">{review.reviewer?.name}</p>
                 <p className="text-xs text-muted-foreground">

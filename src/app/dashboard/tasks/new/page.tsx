@@ -64,7 +64,7 @@ export default async function NewTaskPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="budget_min" className="text-sm font-medium">Min Budget ($)</label>
+                  <label htmlFor="budget_min" className="text-sm font-medium">Min Budget (₹)</label>
                   <Input id="budget_min" name="budget_min" type="number" step="1" min="0" placeholder="15" required />
                 </div>
                 <div className="space-y-2">

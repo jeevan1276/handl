@@ -1,4 +1,4 @@
-# Quad — Hackathon Task Tracker
+# handl — Hackathon Task Tracker
 
 > Sequential critical path. No parallel phases — one person or a small team works through this top-to-bottom. Each phase has an hour estimate. If you're behind, cut from the bottom, never from the top.
 

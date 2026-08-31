@@ -49,12 +49,12 @@ export async function createBookingSession(listingId: string) {
     line_items: [
       {
         price_data: {
-          currency: 'usd',
+          currency: 'inr',
           product_data: {
             name: listing.title,
-            description: `Booking for ${listing.title} on Handl`,
+            description: `Booking for ${listing.title} on handl`,
           },
-          unit_amount: Math.round(listing.price * 100), // Stripe expects amounts in cents
+          unit_amount: Math.round(listing.price * 100), // Stripe expects amounts in paise for INR
         },
         quantity: 1,
       },
